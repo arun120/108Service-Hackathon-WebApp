@@ -9,7 +9,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -128,8 +130,8 @@ public class Customer_Case {
         try{
         conn=new Dbdetails().getConnection();
         stmt=conn.createStatement();
-        stmt.executeUpdate("insert into customer_case(cust_id,type,latitude,longitude,no_ppl_affected) values("
-                + "'"+cust_id+"','"+type+"','"+latitude+"','"+longitude+"','"+no_ppl_affected+"')");
+        stmt.executeUpdate("insert into customer_case(cust_id,type,latitude,longitude,no_ppl_affected,regioncode) values("
+                + "'"+cust_id+"','"+type+"','"+latitude+"','"+longitude+"','"+no_ppl_affected+"','"+LatLan.getRegionCode(new LatLan(latitude,longitude))+"')");
         
         
         ResultSet rs=stmt.executeQuery("select case_id from customer_case where cust_id like '"+cust_id+"'");
@@ -182,4 +184,39 @@ public class Customer_Case {
 }
             return loc;
         }
+
+     public static List<Customer_Case> getAllRecent(String regioncode){
+        Connection conn=null;
+        Statement stmt=null;
+     
+        List<Customer_Case> list=new ArrayList<>();
+        
+        try{
+        conn=new Dbdetails().getConnection();
+        stmt=conn.createStatement();
+        ResultSet rs=stmt.executeQuery("select * from customer_case where regioncode like '"+regioncode+"' and time <= now() and time>= now() -INTERVAL 1 HOUR");
+       while(rs.next()){
+           
+           Customer_Case cust=new Customer_Case();
+           cust.setCase_id(rs.getString("case_id"));
+           cust.setLatitude(rs.getString("latitude"));
+           cust.setLongitude(rs.getString("longitude"));
+           list.add(cust);
+           
+           
+        
+       }
+        
+        
+        
+        }catch(Exception e){e.printStackTrace();}finally{try {
+            if(stmt!=null)stmt.close();if(conn!=null)conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+}
+            return list;
+        }
+
+
 }

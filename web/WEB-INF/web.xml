@@ -24,6 +24,14 @@
         <servlet-name>updateLoc</servlet-name>
         <servlet-class>updateLoc</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DriverLocation</servlet-name>
+        <servlet-class>DriverLocation</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>block</servlet-name>
+        <servlet-class>block</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>addCase</servlet-name>
         <url-pattern>/addCase</url-pattern>
@@ -47,6 +55,14 @@
     <servlet-mapping>
         <servlet-name>updateLoc</servlet-name>
         <url-pattern>/updateLoc</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DriverLocation</servlet-name>
+        <url-pattern>/DriverLocation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>block</servlet-name>
+        <url-pattern>/block</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

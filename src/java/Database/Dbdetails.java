@@ -15,7 +15,7 @@ public class Dbdetails {
     final private String Driver="com.mysql.jdbc.Driver";
     final static private String UserName="root";
     final static private String Pass="1234";
-    private String Url="jdbc:mysql://192.168.1.120:3306/108_service";
+    private String Url="jdbc:mysql://localhost:3306/108_service";
 
     public String getDriver() {
         return Driver;

@@ -35,19 +35,13 @@ function GetRoute() {
 //    source = document.getElementById("txtSource").value;
 //    destination = document.getElementById("txtDestination").value;
 
-        $.get('getloc',function(response){
-            console.log(response);
-            $.each(response.split(':')),function(index,value){
-                console.log(value);
-            });
-            
-        });
+
         
-        function repeat(a,b){
+       
     
  
     var request = {
-        origin: a,
+        origin: "13.0551,80.2221",
         destination:"13.0551,80.2221",
         travelMode: google.maps.TravelMode.DRIVING
     };
@@ -57,7 +51,7 @@ function GetRoute() {
         }
     });
  
- }
+ 
 }
 </script>
     </head>
